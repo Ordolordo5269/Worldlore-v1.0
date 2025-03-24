@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worldlore - World Map</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="icon" href="favicon.ico">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="map-page">
+        <div id="map" class="map-container"></div>
+        <a href="index.html" class="back-button-minimal">←</a>
+        
+        <!-- Country Sidebar -->
+        <div id="country-sidebar" class="country-sidebar">
+            <div class="sidebar-header">
+                <button id="close-sidebar" class="close-sidebar-btn">×</button>
+                <div class="country-title">
+                    <img id="country-flag" src="" alt="Country flag">
+                    <h2 id="country-name">Country Name</h2>
+                </div>
+                <p id="country-official-name">Official Name</p>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="sidebar-section" id="basic-info">
+                    <h3>Basic Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">ISO Code</span>
+                            <span id="country-iso" class="info-value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Continent</span>
+                            <span id="country-continent" class="info-value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Capital</span>
+                            <span id="country-capital" class="info-value">---</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section" id="economy">
+                    <h3>Economy</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">GDP</span>
+                            <span id="country-gdp" class="info-value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">GDP per Capita</span>
+                            <span id="country-gdp-per-capita" class="info-value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Inflation</span>
+                            <span id="country-inflation" class="info-value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Currency</span>
+                            <span id="country-currency" class="info-value">---</span>
+                        </div>
+                    </div>
+                    <div class="sector-breakdown">
+                        <h4>GDP Sector Breakdown</h4>
+                        <div id="sector-breakdown-container">
+                            <div class="sector-bar">
+                                <div id="agriculture-sector" class="sector agriculture" style="width: 0%">
+                                    <span class="sector-label">Agriculture</span>
+                                </div>
+                                <div id="industry-sector" class="sector industry" style="width: 0%">
+                                    <span class="sector-label">Industry</span>
+                                </div>
+                                <div id="services-sector" class="sector services" style="width: 0%">
+                                    <span class="sector-label">Services</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section" id="politics">
+                    <h3>Politics</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Political System</span>
+                            <span id="country-political-system" class="info-value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Democracy Index</span>
+                            <span id="country-democracy-index" class="info-value">---</span>
+                        </div>
+                    </div>
+                    <div class="info-item full-width">
+                        <span class="info-label">Political Parties</span>
+                        <ul id="political-parties" class="info-list">
+                            <li>No data available</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section" id="population">
+                    <h3>Population</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Population</span>
+                            <span id="country-population" class="info-value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Density</span>
+                            <span id="country-density" class="info-value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">HDI</span>
+                            <span id="country-hdi" class="info-value">---</span>
+                        </div>
+                    </div>
+                    <div class="urban-rural">
+                        <h4>Urban/Rural Distribution</h4>
+                        <div class="distribution-bar">
+                            <div id="urban-percentage" class="urban" style="width: 0%">
+                                <span class="distribution-label">Urban</span>
+                            </div>
+                            <div id="rural-percentage" class="rural" style="width: 0%">
+                                <span class="distribution-label">Rural</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section" id="diplomacy">
+                    <h3>Diplomacy</h3>
+                    <div class="info-item full-width">
+                        <span class="info-label">International Organizations</span>
+                        <div id="international-orgs" class="tag-container">
+                            <span class="tag">No data available</span>
+                        </div>
+                    </div>
+                    <div class="info-item full-width">
+                        <span class="info-label">Key Allies</span>
+                        <div id="key-allies" class="tag-container">
+                            <span class="tag">No data available</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="data-source">
+                    <p>Data sources: World Bank, UN Data, REST Countries</p>
+                    <p id="data-timestamp">Last updated: </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+    <script src="js/config/mapConfig.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/map.js"></script>
+</body>
+</html> 

@@ -1,0 +1,404 @@
+/* Estilos generales */
+body {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Estilos para la landing page */
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
+    padding: 2rem;
+}
+
+header {
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cta-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-container p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #2980b9;
+}
+
+footer {
+    margin-top: 2rem;
+    color: #95a5a6;
+    font-size: 0.9rem;
+}
+
+/* Estilos para la página del mapa */
+.map-page {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Evitar barras de desplazamiento */
+    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364); /* Fondo degradado por si el mapa tarda en cargar */
+}
+
+.map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.5s ease; /* Transición suave para cualquier cambio */
+}
+
+.back-button-minimal {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    z-index: 10;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px); /* Efecto de vidrio esmerilado */
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-button-minimal:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+}
+
+/* Personalizar los controles de navegación de Mapbox */
+.mapboxgl-ctrl-group {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.mapboxgl-ctrl-group button {
+    background-color: transparent !important;
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.mapboxgl-ctrl-group button:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Añadir un sutil efecto de brillo al cargar la página */
+@keyframes mapFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.map-container {
+    animation: mapFadeIn 1.5s ease-out;
+}
+
+/* Estilos para los marcadores de países */
+.country-marker {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.country-marker:hover {
+    transform: scale(1.5);
+}
+
+/* Estilos para los popups de Mapbox */
+.mapboxgl-popup-content {
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mapboxgl-popup-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+.mapboxgl-popup-content p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.mapboxgl-popup-content a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #3498db;
+    text-decoration: none;
+}
+
+.mapboxgl-popup-content a:hover {
+    text-decoration: underline;
+}
+
+/* Country Sidebar Styles */
+.country-sidebar {
+    position: absolute;
+    top: 0;
+    right: -30%; /* Start off-screen */
+    width: 25%; /* 1/4 of the screen as requested */
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    z-index: 20;
+    transition: right 0.4s ease-in-out;
+    overflow-y: auto;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.country-sidebar.active {
+    right: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.close-sidebar-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-sidebar-btn:hover {
+    color: white;
+}
+
+.country-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#country-flag {
+    width: 40px;
+    height: auto;
+    margin-right: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#country-name {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+#country-official-name {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.sidebar-section {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+}
+
+.sidebar-section h4 {
+    font-size: 1rem;
+    margin: 15px 0 10px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-item.full-width {
+    grid-column: span 2;
+}
+
+.info-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 5px;
+}
+
+.info-value {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-list li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.sector-breakdown, .urban-rural {
+    margin-top: 15px;
+}
+
+.sector-bar, .distribution-bar {
+    display: flex;
+    height: 25px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.sector, .urban, .rural {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8rem;
+    transition: width 0.5s ease;
+}
+
+.sector-label, .distribution-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px;
+}
+
+.agriculture {
+    background-color: #4CAF50;
+}
+
+.industry {
+    background-color: #2196F3;
+}
+
+.services {
+    background-color: #9C27B0;
+}
+
+.urban {
+    background-color: #3498db;
+}
+
+.rural {
+    background-color: #27ae60;
+}
+
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.tag {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.data-source {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .country-sidebar {
+        width: 35%;
+    }
+}
+
+@media (max-width: 768px) {
+    .country-sidebar {
+        width: 80%;
+        right: -80%;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-item.full-width {
+        grid-column: span 1;
+    }
+} 
