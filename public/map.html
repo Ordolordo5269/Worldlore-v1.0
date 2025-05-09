@@ -16,6 +16,12 @@
         <div id="map" class="map-container"></div>
         <a href="index.html" class="back-button-minimal">←</a>
         
+        <!-- Search Box -->
+        <div class="search-container">
+            <input type="text" id="country-search" placeholder="Search for a country..." class="search-input">
+            <div id="search-results" class="search-results"></div>
+        </div>
+        
         <!-- Country Sidebar -->
         <div id="country-sidebar" class="country-sidebar">
             <div class="sidebar-header">
@@ -158,9 +164,11 @@
     </div>
     
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+    <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
     <script src="js/config/mapConfig.js"></script>
     <script src="js/api.js"></script>
     <script src="js/sidebar.js"></script>
     <script src="js/map.js"></script>
+    <script src="js/search.js"></script>
 </body>
 </html> 

@@ -5,7 +5,7 @@ const countryMapConfig = {
     initialView: {
         center: [0, 20],
         zoom: 2,
-        pitch: 30,
+        pitch: 0,
         bearing: 0,
         minZoom: 1.5,
         maxZoom: 18,

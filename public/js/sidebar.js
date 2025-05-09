@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close sidebar when the close button is clicked
     closeSidebarBtn.addEventListener('click', () => {
         sidebar.classList.remove('active');
+        // Reset the map view when closing the sidebar
+        if (window.resetMapView) {
+            window.resetMapView();
+        }
     });
     
     // Function to update the sidebar with country data
