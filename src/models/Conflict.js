@@ -11,15 +11,37 @@ const Conflict = sequelize.define('Country', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    Motives: {
+    description: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    Timeline: {
+    casualties: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    peopleAffected: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    rootCauses: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    involvedActors: {
+    keyActors: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+    },
+    affectedCountries: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+    },
+    economicImpact: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    intensity: {
+        type: DataTypes.ENUM('Low', 'Medium', 'Severe'),
+        allowNull: false,
     }
 });
 

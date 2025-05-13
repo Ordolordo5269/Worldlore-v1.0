@@ -1,6 +1,6 @@
 const { DataTypes, UniqueConstraintError } = require('sequelize');
 const sequelize = require('../config/database');
-const Event = sequelize.define('Event', {
+const NewsItem = sequelize.define('NewsItem', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -15,8 +15,8 @@ const Event = sequelize.define('Event', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    description: {
-        type: DataTypes.STRING,
+    sourceId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     conflictId: {
@@ -29,4 +29,4 @@ const Event = sequelize.define('Event', {
     },
 });
 
-module.exports = Event;
+module.exports = NewsItem;
